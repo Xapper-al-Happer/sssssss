@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>simple chat</title>
+		<link rel = 'stylesheet' href = '/style.css' />
+		<meta name = 'viewport' content = 'width=device-width,initial-scale=1.0' />
+	</head>
+	<body>
+		<center>
+			<main>
+				<div>
+					<ul class = 'messages'></ul>
+					<form autocomplete = 'off'>
+						<ul style = 'background:var(--theme-color);display:none;font-size:12px;' id = 'action'>
+							<li><e style = "vertical-align:middle;"><ion-icon name="arrow-redo"></ion-icon></e> Replying to <b style = 'color:white;'></b></li>
+						</ul>
+						<input placeholder = 'Enter your message' maxLength = '2000'>
+						<small style="padding: 10px 20px;display:block;visibility:hidden;" id = 'indicator'><b style = 'color:white;'>Sus</b> is typing...</small>
+					</form>
+				</div>
+			</main>
+			<div class="modal" style="position: absolute;width: 100%;height: 100%;background: rgb(0,0,0,0.123);z-index: 100;display:flex;top:0;
+">
+				<div style="width: 300px;margin: auto;padding: 40px;z-index: 101;background: #262626;text-align: left;">
+					<h1 style="margin-bottom: 10px;font-weight: 900;">simple chat</h1>
+					<p>Enter your name somewhere around here to continue. It's easy!</p>
+					<form style = 'margin-top: 20px;' onsubmit = "if(this.querySelector('input').value){addMessage(null,socket.id,'/nick '+this.querySelector('input').value);socket.emit('message',{content:'/nick '+this.querySelector('input').value});}this.parentElement.parentElement.style.display='none';document.querySelector('form input').focus();return false;">
+						<input style="border-bottom: none;" autofocus maxLength = '32'>
+						<button style = 'margin-top:10px;'>Start chatting</button>
+					</form>
+					<small style = 'margin: 20px 0;display:block;'>You can use <b>/nick</b> to change it later</small>
+					<script authed="document.cookie='authed=true';location.reload();" src="https://auth.turbio.repl.co/script.js"></script>
+				</div>
+			</div>
+		</center>
+		<script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+		<script src = 'https://cdnjs.cloudflare.com/ajax/libs/dompurify/2.3.6/purify.min.js'></script>
+		<script src="socket.io/socket.io.js"></script>
+		<script src = '/script.js'></script>
+		<script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
+		<script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
+	</body>
+</html>
